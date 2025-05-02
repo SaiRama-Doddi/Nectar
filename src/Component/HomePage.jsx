@@ -5,7 +5,7 @@ import logo from '../assets/Group.png'
 const HomePage = () => {
   return (
     <div
-      className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center " 
+      className="h-screen bg-cover bg-center flex flex-col items-center justify-center " 
       style={{ backgroundImage: `url(${image})` }}
     >
    
