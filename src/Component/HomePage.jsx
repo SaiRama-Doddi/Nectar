@@ -9,7 +9,7 @@ const HomePage = () => {
       style={{ backgroundImage: `url(${image})` }}
     >
    
-       <div className='mt-50'></div>
+       
       <img src={logo} alt="logo" className="h-15 w-15"/>
       <p className="text-5xl font-medium text-white mt-4">welcome</p>
       <p className="text-5xl font-medium text-white mt-4">to our store</p>
