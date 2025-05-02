@@ -1,35 +1,45 @@
-import React,{useState,useEffect} from 'react'
-import image from '../assets/Group.png'
+import React, { useState, useEffect } from 'react';
+import image from '../assets/Group.png';
 
 const SplashScreen = () => {
+  const [imgStyle, setImgStyle] = useState({
+    opacity: 0,
+    transform: 'translateX(50px) scale(0.8)', // from right
+    transition: 'opacity 1.5s ease-out, transform 1.5s ease-out',
+  });
 
-    const [style, setStyle] = useState({
-        opacity: 0,
-        transform: "scale(0.8)",
-        transition: "opacity 1.5s ease-out, transform 1.5s ease-out",
+  const [textStyle, setTextStyle] = useState({
+    opacity: 0,
+    transform: 'translateX(-50px) scale(0.8)', // from left
+    transition: 'opacity 1.5s ease-out, transform 1.5s ease-out',
+  });
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setImgStyle({
+        opacity: 1,
+        transform: 'translateX(0) scale(1)',
+        transition: 'opacity 1.5s ease-out, transform 1.5s ease-out',
       });
-    
-      useEffect(() => {
-        // Trigger the animation after a short delay
-        const timeout = setTimeout(() => {
-          setStyle({
-            opacity: 1,
-            transform: "scale(1)",
-            transition: "opacity 1.5s ease-out, transform 1.5s ease-out",
-          });
-        }, 100); // small delay to ensure rendering first
-    
-        return () => clearTimeout(timeout);
-      }, []);
-  return (
-    <div className="min-h-screen bg-[#53B175] sm:bg-green-200 flex items-center justify-center" style={style}>
-        <img src={image} alt="logo" />
-        <div className='pl-4'>
-            <p className="text-5xl font-medium text-white">nectar</p>
-             <p className="text-md font-light tracking-wide text-white">online grocerist</p>
-        </div>
-    </div> 
-  )
-}
+      setTextStyle({
+        opacity: 1,
+        transform: 'translateX(0) scale(1)',
+        transition: 'opacity 1.5s ease-out, transform 1.5s ease-out',
+      });
+    }, 100);
 
-export default SplashScreen
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#53B175] sm:bg-green-200 flex items-center justify-center">
+      <img src={image} alt="logo" style={imgStyle} />
+      <div className="pl-4" style={textStyle}>
+        <p className="text-5xl font-medium text-white">nectar</p>
+        <p className="text-md font-light tracking-wide text-white">online grocerist</p>
+      </div>
+    </div>
+  );
+};
+
+export default SplashScreen;

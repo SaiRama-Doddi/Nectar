@@ -8,7 +8,7 @@ const HomePage = () => {
       className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center px-4 text-center overflow-hidden"
       style={{ backgroundImage: `url(${image})` }}
     >
-        <div className='mt-30'></div>
+        <div className='mt-50'></div>
       <img src={logo} alt="logo" className="h-[60px] w-[60px] mb-4" />
       <p className="text-5xl font-medium text-white">welcome</p>
       <p className="text-5xl font-medium text-white">to our store</p>
