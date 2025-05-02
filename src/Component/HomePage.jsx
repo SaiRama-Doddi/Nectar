@@ -5,19 +5,18 @@ import logo from '../assets/Group.png'
 const HomePage = () => {
   return (
     <div
-      className="h-screen bg-cover bg-center flex flex-col items-center justify-center " 
+      className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center px-4 text-center overflow-hidden"
       style={{ backgroundImage: `url(${image})` }}
     >
-   
-       
-      <img src={logo} alt="logo" className="h-15 w-15"/>
-      <p className="text-5xl font-medium text-white mt-4">welcome</p>
-      <p className="text-5xl font-medium text-white mt-4">to our store</p>
-      <p className="text-md font-light tracking-wide text-white mt-4">Get your groceries faster</p>
-      <button className="bg-[#53B175] text-white text-md font-medium rounded-md w-[300px] h-[65px] mt-5 cursor-pointer">
+      <img src={logo} alt="logo" className="h-[60px] w-[60px] mb-4" />
+      <p className="text-5xl font-medium text-white">welcome</p>
+      <p className="text-5xl font-medium text-white">to our store</p>
+      <p className="text-md font-light tracking-wide text-white mt-4">
+        Get your groceries faster
+      </p>
+      <button className="bg-[#53B175] text-white text-md font-medium rounded-md w-[300px] h-[65px] mt-5">
         Get Started
       </button>
-
     </div>
   )
 }
