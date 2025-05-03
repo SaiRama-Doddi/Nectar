@@ -3,6 +3,7 @@ import './index.css'
 import './App.css'
 import SplashScreen from './Component/SplashScreen'
 import HomePage from './Component/HomePage'
+import NumberPage from './Component/NumberPage'
 
 function App() {
   const [splash,setSplash]=useState(true);
@@ -16,7 +17,8 @@ function App() {
   return (
     <>
       <div>
-       {splash?<SplashScreen/>:<HomePage/>}
+     {/*   {splash?<SplashScreen/>:<HomePage/>} */}
+       <NumberPage/>
       </div>
     </>
   )
