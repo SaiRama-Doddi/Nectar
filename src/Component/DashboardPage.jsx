@@ -1,5 +1,5 @@
-import image2 from '../assets/Vector.png';
-import image1 from '../assets/vector (1).png';
+import image2 from '../assets/Vector.png'
+import image1 from '../assets/Vector2.png'
 import { FaSearch } from 'react-icons/fa';
 
 const DashboardPage = () => {
