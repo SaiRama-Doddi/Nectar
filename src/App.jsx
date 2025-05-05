@@ -1,27 +1,35 @@
-import { useState,useEffect} from 'react'
-import './index.css'
-import './App.css'
-import SplashScreen from './Component/SplashScreen'
-import HomePage from './Component/HomePage'
-import NumberPage from './Component/NumberPage'
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import './index.css';
+import './App.css';
+import SplashScreen from './Component/SplashScreen';
+import HomePage from './Component/HomePage';
+import NumberPage from './Component/NumberPage';
 
-function App() {
-  const [splash,setSplash]=useState(true);
+function SplashWrapper() {
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/home');
+    }, 3000);
 
-  useEffect(()=>{
-    const timer=setTimeout(()=>setSplash(false),3000);
-    return ()=>clearTimeout(timer);
-  },[])
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-  return (
-    <>
-      <div>
-     {/*   {splash?<SplashScreen/>:<HomePage/>} */}
-       <NumberPage/>
-      </div>
-    </>
-  )
+  return <SplashScreen />;
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<SplashWrapper />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/number" element={<NumberPage />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
