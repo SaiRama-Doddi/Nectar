@@ -5,6 +5,8 @@ import './App.css';
 import SplashScreen from './Component/SplashScreen';
 import HomePage from './Component/HomePage';
 import NumberPage from './Component/NumberPage';
+import OtpPage from './Component/OtpPage';
+import DashboardPage from './Component/DashboardPage';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -27,6 +29,8 @@ function App() {
         <Route path="/" element={<SplashWrapper />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/number" element={<NumberPage />} />
+        <Route path="/otp" element={<OtpPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
