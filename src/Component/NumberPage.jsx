@@ -4,7 +4,7 @@ import Image from "../assets/Mask Group.png";
 const NumberPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="flex flex-col md:flex-row items-center justify-center bg-white shadow-lg rounded-xl overflow-hidden w-full max-w-4xl">
+      <div className="flex flex-col md:flex-row items-center justify-center  rounded-xl overflow-hidden w-full max-w-4xl">
         
         {/* Image section - always visible and stacked on mobile */}
         <div className="w-full md:w-1/2">
