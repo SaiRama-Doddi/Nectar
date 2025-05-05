@@ -15,7 +15,7 @@ const OtpPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
-      <p className="text-2xl font-semibold mb-6">Enter the OTP sent to your number</p>
+      <p className="text-2xl font-semibold mb-6">Enter your 4-digit code</p>
       <input
         type="text"
         value={otp}
