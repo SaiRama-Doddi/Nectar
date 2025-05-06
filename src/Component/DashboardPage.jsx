@@ -1,6 +1,7 @@
 import image2 from '../assets/Vector.png'
 import image1 from '../assets/Vector2.png'
 import { FaSearch } from 'react-icons/fa';
+import Slider from './Slider';
 
 const DashboardPage = () => {
   const mobile = localStorage.getItem("userMobile");
@@ -21,19 +22,20 @@ const DashboardPage = () => {
       />
 
       {/* Search Box - placed after the images */}
-      <div className="mt-[20px] flex items-center bg-gray-200 rounded-full px-2 py-2 w-full max-w-md">
-        <FaSearch className="text-gray-500 mr-2" />
-        <input
-          type="text"
-          placeholder="Search Store"
-          className="bg-transparent outline-none w-full text-gray-700 placeholder-gray-500"
-        />
-      </div>
+      <div className="flex justify-center items-center p-6">
+  <div className="flex items-center bg-gray-200 rounded-full px-4 py-2 w-full max-w-md">
+    <FaSearch className="text-gray-500 mr-2" />
+    <input
+      type="text"
+      placeholder="Search Store"
+      className="bg-transparent outline-none w-full text-gray-700 placeholder-gray-500"
+    />
+  </div>
+</div>
 
-      {/* Optional: Welcome Message */}
-      <h1 className="mt-8 text-3xl font-bold text-gray-800">
-        Welcome to your dashboard, {mobile}!
-      </h1>
+
+
+    <Slider/>
     </div>
   );
 };
