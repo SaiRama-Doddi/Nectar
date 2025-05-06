@@ -27,24 +27,28 @@ const Slider = () => {
   }, [current]);
 
   return (
-    <div className="relative w-full max-w-xl mx-auto overflow-hidden rounded-lg shadow-lg">
-   <img
-  src={images[current]}
-  alt={`slide-${current}`}
-  className="w-full h-64 sm:h-60 md:h-96 object-cover transition duration-500"
-/>
+    <div className="relative w-full max-w-xl mx-auto overflow-hidden">
+<div className="px-0 sm:px-8 flex justify-center ml-5 mr-5">
+  <img
+    src={images[current]}
+    alt={`slide-${current}`}
+    className="w-full h-64 sm:h-60 md:h-96 object-cover transition duration-500 rounded-2xl"
+  />
+</div>
+
+
 
 
       {/* Navigation buttons */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 text-black px-2 py-1 rounded-full hover:bg-white"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/70 text-black px-2 py-1 rounded-full hover:bg-white"
       >
         &#8592;
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 text-black px-2 py-1 rounded-full hover:bg-white"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/70 text-black px-2 py-1 rounded-full hover:bg-white"
       >
         &#8594;
       </button>
