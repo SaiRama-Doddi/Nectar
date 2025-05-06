@@ -2,6 +2,7 @@ import image2 from '../assets/Vector.png'
 import image1 from '../assets/Vector2.png'
 import { FaSearch } from 'react-icons/fa';
 import Slider from './Slider';
+import GroceryProducts from '../Products/GroceryProducts';
 
 const DashboardPage = () => {
   const mobile = localStorage.getItem("userMobile");
@@ -36,6 +37,7 @@ const DashboardPage = () => {
 
 
     <Slider/>
+    <GroceryProducts/>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import NumberPage from './Component/NumberPage';
 import OtpPage from './Component/OtpPage';
 import DashboardPage from './Component/DashboardPage';
 import Slider from './Component/Slider';
+import GroceryProducts from './Products/GroceryProducts';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function App() {
         <Route path="/otp" element={<OtpPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path='/slider' element={<Slider />} />
+        <Route path='/grocery' element={<GroceryProducts />}  />
       </Routes>
     </Router>
   );
