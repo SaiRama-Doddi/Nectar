@@ -1,16 +1,18 @@
-import image2 from '../assets/Vector.png'
-import image1 from '../assets/Vector2.png'
+import image2 from '../assets/Vector.png';
+import image1 from '../assets/Vector2.png';
 import { FaSearch } from 'react-icons/fa';
 import Slider from './Slider';
 import GroceryProducts from '../Products/GroceryProducts';
 import KitchenAccessories from '../Products/KitchenAccessories';
 import CategoryPage from '../Products/CategoryPage';
-
+import Navbar from './Navbar';
+import MobileAccessories from '../Products/MobileAccessories';
 
 const DashboardPage = () => {
-    return (
-      <div className="h-screen overflow-y-auto bg-gray-100 flex flex-col pt-20">
-
+  return (
+    <div className="h-screen flex flex-col relative bg-gray-100">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto pt-20 pb-24"> {/* Ensure space for fixed navbar */}
         {/* Fixed Positioned Images */}
         <div className="relative h-0">
           <img
@@ -24,7 +26,7 @@ const DashboardPage = () => {
             className="absolute w-[20.88px] h-[23.78px] top-[65.31px] left-[153.46px]"
           />
         </div>
-  
+
         {/* Search Box */}
         <div className="flex justify-center items-center px-6 mb-4">
           <div className="flex items-center bg-gray-200 rounded-full px-4 py-2 w-full max-w-md">
@@ -36,17 +38,23 @@ const DashboardPage = () => {
             />
           </div>
         </div>
-  
-        {/* Content (force scroll here) */}
-        <div className="flex flex-col space-y-6 px-4 pb-10">
+
+        {/* Page Content */}
+        <div className="flex flex-col space-y-6 px-4">
           <Slider />
           <GroceryProducts />
           <KitchenAccessories />
           <CategoryPage />
+          <MobileAccessories />
         </div>
       </div>
-    );
-  };
-  
-  
+
+      {/* Fixed Bottom Navbar */}
+      <div className="fixed bottom-0 left-0 w-full z-50 bg-white shadow-md">
+        <Navbar />
+      </div>
+    </div>
+  );
+};
+
 export default DashboardPage;
