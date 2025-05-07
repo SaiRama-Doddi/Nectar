@@ -42,7 +42,7 @@ const CategoryPage = () => {
         {uniqueCategories.map((item, index) => (
           <div
             key={item.category}
-            className={`min-w-[45%] sm:min-w-[100%] md:min-w-[200px] flex rounded-lg shadow p-3 items-center ${bgColors[index % bgColors.length]}`}
+            className={`min-w-[45%] sm:min-w-[45%] md:min-w-[200px] flex rounded-lg shadow p-3 items-center ${bgColors[index % bgColors.length]}`}
           >
             <img
               src={item.thumbnail}
@@ -50,7 +50,7 @@ const CategoryPage = () => {
               className="w-16 h-16 object-cover rounded mr-4"
             />
             <div>
-              <h3 className="text-md font-semibold capitalize">{item.category}</h3>
+              <h3 className="text-sm font-semibold capitalize">{item.category}</h3>
             </div>
           </div>
         ))}
