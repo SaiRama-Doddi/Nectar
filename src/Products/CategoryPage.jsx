@@ -42,7 +42,7 @@ const CategoryPage = () => {
         {uniqueCategories.map((item, index) => (
           <div
             key={item.category}
-            className={`min-w-[45%] sm:min-w-[70%] md:min-w-[200px] flex rounded-lg shadow p-3 items-center ${bgColors[index % bgColors.length]}`}
+            className={`min-w-[45%] sm:min-w-[100%] md:min-w-[200px] flex rounded-lg shadow p-3 items-center ${bgColors[index % bgColors.length]}`}
           >
             <img
               src={item.thumbnail}
