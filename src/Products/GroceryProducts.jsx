@@ -14,7 +14,7 @@ const GroceryProducts = () => {
 
   return (
     <div className="w-full px-4 py-6">
-      <h2 className="text-lg font-bold mb-4">Groceries</h2>
+      <h2 className="text-2xl font-bold mb-4 font-Poppins">Groceries</h2>
 
       <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
         {products.map((product) => (
