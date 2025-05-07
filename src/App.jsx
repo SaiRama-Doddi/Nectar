@@ -10,6 +10,7 @@ import DashboardPage from './Component/DashboardPage';
 import Slider from './Component/Slider';
 import GroceryProducts from './Products/GroceryProducts';
 import KitchenAccessories from './Products/KitchenAccessories';
+import CategoryPage from './Products/CategoryPage';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ function App() {
         <Route path='/slider' element={<Slider />} />
         <Route path='/grocery' element={<GroceryProducts />}  />
         <Route path='/kitchen' element={<KitchenAccessories />} />
+        <Route path='/category' element={<CategoryPage />} />
       </Routes>
     </Router>
   );

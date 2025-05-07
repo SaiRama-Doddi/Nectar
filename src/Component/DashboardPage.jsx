@@ -4,12 +4,13 @@ import { FaSearch } from 'react-icons/fa';
 import Slider from './Slider';
 import GroceryProducts from '../Products/GroceryProducts';
 import KitchenAccessories from '../Products/KitchenAccessories';
+import CategoryPage from '../Products/CategoryPage';
 
 
 const DashboardPage = () => {
     return (
       <div className="h-screen overflow-y-auto bg-gray-100 flex flex-col pt-20">
-        
+
         {/* Fixed Positioned Images */}
         <div className="relative h-0">
           <img
@@ -41,6 +42,7 @@ const DashboardPage = () => {
           <Slider />
           <GroceryProducts />
           <KitchenAccessories />
+          <CategoryPage />
         </div>
       </div>
     );
