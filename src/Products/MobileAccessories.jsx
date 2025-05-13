@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"; // ADD this at top
 import { FaPlus } from "react-icons/fa"; // ✅ Add this import
+import { useCart } from '../Context/CartContext'; // already imported
 
 
 const MobileAccessories = () => {
  const [products, setProducts] = useState([]);
     const navigate = useNavigate(); // ADD this
+    const { addToCart } = useCart();
   
     useEffect(() => {
       fetch("https://dummyjson.com/products/category/mobile-accessories?limit=10")
@@ -43,7 +45,7 @@ const MobileAccessories = () => {
               <p className="text-xs text-green-700 font-bold">${product.price}</p>
               <div className=" flex justify-between items-center">
                                         <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
-                                        <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px]">
+                                        <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer" onClick={() => addToCart(product)}>
                                           <FaPlus className="text-[15px]" />
                                         </button>
                         </div>

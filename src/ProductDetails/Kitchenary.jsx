@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import Navbar from '../Component/Navbar';
-
+import { useCart } from '../Context/CartContext'; // already imported
 const Groceries = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/category/kitchen-accessories")
@@ -42,7 +43,7 @@ const Groceries = () => {
 
                 <div className="mt-auto flex justify-between items-center">
                   <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
-                  <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px]">
+                  <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer" onClick={() => addToCart(product)}>
                     <FaPlus className="text-[15px]" />
                   </button>
                 </div>

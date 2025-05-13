@@ -7,27 +7,34 @@ const CartPage = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full px-4 py-6 overflow-y-auto h-[calc(100vh-100px)]">
       <h2 className="text-2xl font-bold mb-4 font-Poppins">Your Cart</h2>
 
       {cartItems.length > 0 ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {cartItems.map((item) => (
-              <div key={item.id} className="bg-white p-3 rounded-lg shadow">
+              <div key={item.id} className=" flex flex-row bg-white p-3 rounded-lg shadow">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
-                  className="w-full h-32 object-cover rounded mb-2"
+                  className="w-1/2 h-32 object-cover rounded mb-2"
                 />
-                <h3 className="text-sm font-semibold truncate">{item.title}</h3>
+                <div className="flex flex-col justify-between ml-2">
+               <h3 className="text-sm font-semibold truncate">{item.title}</h3>
                 <p className="text-xs text-green-700 font-bold">${item.price}</p>
-                <button
-                  className="bg-red-600 text-white p-2 rounded-lg text-[10px] mt-2"
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  <FaTrash className="text-[15px]" />
-                </button>
+              <button
+  onClick={() => removeFromCart(item.id)}
+  className="flex items-center bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-[10px] mt-1 transition-all duration-150"
+>
+  <FaTrash className="text-xs mr-1" />
+  Remove
+</button>
+
+
+
+                </div>
+               
               </div>
             ))}
           </div>

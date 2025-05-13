@@ -53,7 +53,7 @@ const { addToCart } = useCart(); // ✅ Use context function
             <p className="text-xs text-green-700 font-bold">${product.price}</p>
           <div className=" flex justify-between items-center">
                             <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
-                            <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px]" onClick={() => addToCart(product)} >
+                            <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer" onClick={() => addToCart(product)} >
                               <FaPlus className="text-[15px]" />
                             </button>
             </div>

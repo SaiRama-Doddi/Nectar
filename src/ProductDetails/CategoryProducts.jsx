@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Component/Navbar'; // Import your Navbar component
 import { FaPlus } from 'react-icons/fa';
-
+import { useCart } from '../Context/CartContext'; // already imported
 
 const CategoryProducts = () => {
   const { category } = useParams(); // Get category from URL
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetch(`https://dummyjson.com/products/category/${category}`)
@@ -36,7 +37,7 @@ const CategoryProducts = () => {
             <p className="text-xs text-green-700 font-bold">${product.price}</p>
         <div className="mt-auto flex justify-between items-center">
                         <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
-                        <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px]">
+                        <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer" onClick={() => addToCart(product)}>
                           <FaPlus className="text-[15px]" />
                         </button>
                       </div>
