@@ -13,6 +13,11 @@ import KitchenAccessories from './Products/KitchenAccessories';
 import CategoryPage from './Products/CategoryPage';
 import Navbar from './Component/Navbar';
 import MobileAccessories from './Products/MobileAccessories';
+import Groceries from './ProductDetails/Groceries';
+import Kitchenary from './ProductDetails/Kitchenary'
+import Mobiles from './ProductDetails/Mobiles';
+import CategoryProducts from './ProductDetails/CategoryProducts';
+import CartPage from './Cart/CartPage';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -43,6 +48,11 @@ function App() {
         <Route path='/category' element={<CategoryPage />} />
         <Route path='/mobile' element={<MobileAccessories/>} />
         <Route path='/navbar' element={<Navbar />} />
+        <Route path='/groceries' element={<Groceries />} />
+        <Route path='/kitchenary' element={<Kitchenary />} />
+        <Route path='/mobiles' element={<Mobiles />} />
+        <Route path="/category/:category" element={<CategoryProducts />} />
+        <Route path='/cart'  element={<CartPage />} />
       </Routes>
     </Router>
   );

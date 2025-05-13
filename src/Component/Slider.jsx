@@ -17,29 +17,26 @@ const Slider = () => {
     setCurrent(current === images.length - 1 ? 0 : current + 1);
   };
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       nextSlide();
     }, 3000);
-
-    return () => clearTimeout(timer); // Cleanup on re-render
+    return () => clearTimeout(timer);
   }, [current]);
 
   return (
-    <div className="relative w-full max-w-xl mx-auto overflow-hidden">
-<div className="px-0 sm:px-8 flex justify-center ml-5 mr-5">
+    <div className="relative w-full overflow-hidden">
+      {/* Image Container */}
+      <div className="relative w-full px-4 md:px-8 lg:px-16 xl:px-24 overflow-hidden">
   <img
     src={images[current]}
     alt={`slide-${current}`}
-    className="w-full h-64 sm:h-60 md:h-96 object-cover transition duration-500 rounded-2xl"
+    className="w-full h-64 sm:h-60 md:h-96 object-cover transition duration-500 rounded-lg sm:rounded-2xl"
   />
 </div>
 
 
-
-
-      {/* Navigation buttons */}
+      {/* Navigation Buttons */}
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/70 text-black px-2 py-1 rounded-full hover:bg-white"
@@ -53,15 +50,13 @@ const Slider = () => {
         &#8594;
       </button>
 
-      {/* Dots */}
+      {/* Dot Indicators */}
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {images.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
-            className={`w-3 h-3 rounded-full ${
-              idx === current ? "bg-white" : "bg-gray-400"
-            }`}
+            className={`w-3 h-3 rounded-full ${idx === current ? "bg-white" : "bg-gray-400"}`}
           />
         ))}
       </div>

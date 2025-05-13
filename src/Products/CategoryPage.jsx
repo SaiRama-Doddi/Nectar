@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
 
-// Optional: Define a palette of light background Tailwind classes
 const bgColors = [
   'bg-red-100',
   'bg-green-100',
@@ -14,6 +14,7 @@ const bgColors = [
 
 const CategoryPage = () => {
   const [uniqueCategories, setUniqueCategories] = useState([]);
+  const navigate = useNavigate(); // ✅ Init navigate
 
   useEffect(() => {
     fetch("https://dummyjson.com/products?limit=100")
@@ -38,11 +39,12 @@ const CategoryPage = () => {
     <div className="w-full px-4 py-6">
       <h2 className="text-xl font-bold mb-4 font-Poppins">Categories</h2>
 
-      <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
+      <div className="flex overflow-x-auto space-x-4 scrollbar-hide pb-2">
         {uniqueCategories.map((item, index) => (
           <div
             key={item.category}
-            className={`min-w-[30%] sm:min-w-[45%] md:min-w-[200px] flex rounded-lg shadow p-3 items-center ${bgColors[index % bgColors.length]}`}
+            onClick={() => navigate(`/category/${item.category}`)} // ✅ Navigate on click
+            className={`min-w-[30%] sm:min-w-[45%] md:min-w-[200px] cursor-pointer flex rounded-lg shadow p-3 items-center transition hover:scale-105 ${bgColors[index % bgColors.length]}`}
           >
             <img
               src={item.thumbnail}
