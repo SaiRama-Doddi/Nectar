@@ -7,7 +7,7 @@ const CartPage = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
 
   return (
-    <div className="w-full px-4 py-6 overflow-y-auto h-[calc(100vh-100px)]">
+    <div className="w-full px-4 py-6 overflow-y-auto h-[calc(100vh-100px)] scrollbar-hide">
       <h2 className="text-2xl font-bold mb-4 font-Poppins">Your Cart</h2>
 
       {cartItems.length > 0 ? (

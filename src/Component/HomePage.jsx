@@ -7,7 +7,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleStart = () => {
-    navigate('/number');
+    navigate('/dashboard');
   };
 
   return (

@@ -14,13 +14,13 @@ const DashboardPage = () => {
     <div className="h-screen flex flex-col relative bg-gray-100">
             <Header />
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto pt-20 pb-24"> {/* Ensure space for fixed navbar */}
+      <div className="flex-1 overflow-y-auto pt-20 pb-24 scrollbar-hide" > {/* Ensure space for fixed navbar */}
    
 
  
 
         {/* Page Content */}
-        <div className="flex flex-col space-y-6 px-4">
+        <div className="flex flex-col space-y-6 px-4 ">
           <Slider />
           <GroceryProducts />
           <KitchenAccessories />
