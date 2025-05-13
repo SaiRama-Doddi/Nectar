@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import Navbar from '../Component/Navbar';
 import { useCart } from '../Context/CartContext'; // already imported
+import Header from '../Component/Header';
 
 const Mobiles = () => {
   const [products, setProducts] = useState([]);
@@ -18,6 +19,7 @@ const Mobiles = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+        <Header />
       {/* Main Content */}
       <div className="flex-grow px-4 pt-6 pb-24">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-green-800 text-center font-Poppins">

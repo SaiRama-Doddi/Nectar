@@ -18,6 +18,7 @@ import Kitchenary from './ProductDetails/Kitchenary'
 import Mobiles from './ProductDetails/Mobiles';
 import CategoryProducts from './ProductDetails/CategoryProducts';
 import CartPage from './Cart/CartPage';
+import Header from './Component/Header';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -48,11 +49,12 @@ function App() {
         <Route path='/category' element={<CategoryPage />} />
         <Route path='/mobile' element={<MobileAccessories/>} />
         <Route path='/navbar' element={<Navbar />} />
-        <Route path='/groceries' element={<Groceries />} />
-        <Route path='/kitchenary' element={<Kitchenary />} />
-        <Route path='/mobiles' element={<Mobiles />} />
+        <Route path='/dashboard/groceries' element={<Groceries />} />
+        <Route path='/dashboard/kitchenary' element={<Kitchenary />} />
+        <Route path='/dashboard/mobiles' element={<Mobiles />} />
         <Route path="/category/:category" element={<CategoryProducts />} />
         <Route path='/cart'  element={<CartPage />} />
+        <Route path='/header' element={<Header />} />
       </Routes>
     </Router>
   );

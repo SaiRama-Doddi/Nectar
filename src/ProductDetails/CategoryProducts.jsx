@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../Component/Navbar'; // Import your Navbar component
 import { FaPlus } from 'react-icons/fa';
 import { useCart } from '../Context/CartContext'; // already imported
+import Header from '../Component/Header';
 
 const CategoryProducts = () => {
   const { category } = useParams(); // Get category from URL
@@ -18,6 +19,7 @@ const CategoryProducts = () => {
 
   return (
     <div className="px-4 py-6">
+        <Header />
       <h2 className="text-2xl font-bold mb-4 capitalize font-Poppins text-green-800">
         {category}
       </h2>

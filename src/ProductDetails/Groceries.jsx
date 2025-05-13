@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import Navbar from '../Component/Navbar';
 import { useCart } from '../Context/CartContext'; // already imported
+import Header from '../Component/Header';
 
 const Groceries = () => {
   const [products, setProducts] = useState([]);
@@ -18,11 +19,10 @@ const Groceries = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+        <Header />
       {/* Main Content */}
       <div className="flex-grow px-4 pt-6 pb-24">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-green-800 text-center font-Poppins">
-          Groceries
-        </h2>
+    
 
         <div className="h-[calc(100vh-210px)] overflow-y-auto pr-1">
           <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">

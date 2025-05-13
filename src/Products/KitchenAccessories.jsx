@@ -18,40 +18,45 @@ const KitchenAccessories = () => {
    }, []);
  
    return (
-     <div className="w-full px-4 py-6">
-       <h2 className="text-2xl font-bold mb-4 font-Poppins">kitchen-accessories</h2>
-         <div className="mt-4 text-right mb-4 ">
-        <button
-          onClick={() => navigate("/kitchenary")}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-all duration-200 cursor-pointer"
-        >
-          See All
-        </button>
+   <div className="w-full px-4 py-6">
+  <h2 className="text-2xl font-bold mb-4 font-Poppins">kitchen-accessories</h2>
+
+  <div className="mt-4 text-right mb-4">
+    <button
+      onClick={() => navigate("/dashboard/kitchenary")}
+      className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-all duration-200 cursor-pointer"
+    >
+      See All
+    </button>
+  </div>
+
+  <div className="flex overflow-x-auto space-x-4 scrollbar-hide lg:grid lg:grid-cols-10 lg:gap-4 lg:space-x-0">
+    {products.map((product) => (
+      <div
+        key={product.id}
+        className="w-[45%] sm:w-[48%] md:w-[200px] flex-shrink-0 lg:w-auto bg-white border-gray-400 rounded-lg shadow p-3"
+      >
+        <img
+          src={product.thumbnail}
+          alt={product.title}
+          className="w-full h-32 object-cover rounded mb-2"
+        />
+        <h3 className="text-sm font-semibold truncate">{product.title}</h3>
+        <p className="text-xs text-green-700 font-bold">${product.price}</p>
+        <div className="flex justify-between items-center">
+          <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
+          <button
+            className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer"
+            onClick={() => addToCart(product)}
+          >
+            <FaPlus className="text-[15px]" />
+          </button>
+        </div>
       </div>
- 
-       <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
-         {products.map((product) => (
-           <div
-             key={product.id}
-             className="w-[48%] sm:w-[48%] md:w-[200px] flex-shrink-0 bg-white border-gray-400 rounded-lg shadow p-3"
-           >
-             <img
-               src={product.thumbnail}
-               alt={product.title}
-               className="w-full h-32 object-cover rounded mb-2"
-             />
-             <h3 className="text-sm font-semibold truncate">{product.title}</h3>
-             <p className="text-xs text-green-700 font-bold">${product.price}</p>
-             <div className=" flex justify-between items-center">
-                                       <p className="text-[10px] text-gray-600">⭐ {product.rating}</p>
-                                       <button className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg text-[10px] cursor-pointer" onClick={() => addToCart(product)}>
-                                         <FaPlus className="text-[15px]" />
-                                       </button>
-                       </div>
-           </div>
-         ))}
-       </div>
-     </div>
+    ))}
+  </div>
+</div>
+
    );
 }
 

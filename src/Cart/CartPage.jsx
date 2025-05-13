@@ -42,7 +42,7 @@ const CartPage = () => {
           <div className="text-right mt-6">
             <button
               onClick={clearCart}
-              className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+              className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
             >
               Clear Cart
             </button>
