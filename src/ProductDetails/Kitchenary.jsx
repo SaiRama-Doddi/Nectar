@@ -8,10 +8,10 @@ const Groceries = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/category/kitchen-accessories")
+    fetch("http://localhost:5000/api/kitchenary")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.products);
+        setProducts(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
