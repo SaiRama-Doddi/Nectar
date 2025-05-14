@@ -2,12 +2,16 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import Navbar from "../Component/Navbar";
 import { useCart } from '../Context/CartContext';
+import Header from "../Component/Header";
 
 const CartPage = () => {
   const { cartItems, removeFromCart, clearCart } = useCart();
 
   return (
+        <div className="h-screen flex flex-col relative bg-gray-100">
+          <Header />
     <div className="w-full px-4 py-6 overflow-y-auto h-[calc(100vh-100px)] scrollbar-hide">
+  
       <h2 className="text-2xl font-bold mb-4 font-Poppins">Your Cart</h2>
 
       {cartItems.length > 0 ? (
@@ -57,6 +61,7 @@ const CartPage = () => {
         <Navbar />
       </div>
     </div>
+ </div>
   );
 };
 

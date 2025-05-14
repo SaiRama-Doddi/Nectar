@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa"; // Import back arrow icon
 import Image from "../assets/Mask Group.png";
 
 const NumberPage = () => {
@@ -16,7 +17,16 @@ const NumberPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(-1)} // Navigate back when clicked
+        className="absolute top-4 left-4 p-2 bg-green-600 text-white rounded-full shadow-md hover:bg-green-700 transition"
+      >
+        <FaArrowLeft />
+      </button>
+
+      {/* Main Content */}
       <div className="flex flex-col md:flex-row items-center justify-center rounded-xl overflow-hidden w-full max-w-4xl">
         <div className="w-full md:w-1/2">
           <img src={Image} alt="Banner" className="object-cover w-full h-64 md:h-full" />
