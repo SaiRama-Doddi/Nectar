@@ -9,7 +9,7 @@ const navItems = [
     id: 'shop',
     label: 'Shop',
     icon: <FaShoppingBag />,
-    paths: ['/dashboard', '/dashboard/groceries', '/dashboard/kitchenary', '/dashboard/mobiles'],
+    paths: ['/dashboard', '/dashboard/groceries', '/dashboard/kitchenary', '/dashboard/mobiles','/category/beauty','/category/fragrances','/category/furniture','/category/groceries','/category/home-decoration','/category/kitchen-accessories','/category/laptops','/category/mens-shirts','/category/mens-shoes','/category/mens-watches','/category/mobile-accessories'],
   },
   { id: 'cart', label: 'Cart', icon: <FaShoppingCart />, path: '/cart' },
   { id: 'order', label: 'Orders', icon: <FaClipboardList />, path: '/order' },
@@ -19,8 +19,7 @@ const navItems = [
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems } = useCart(); // ✅ Use context
-
+const { totalItems } = useCart();
 const isActive = (item) => {
   if (item.paths) {
     return item.paths.some(p => location.pathname.startsWith(p));
@@ -43,11 +42,11 @@ const isActive = (item) => {
             }`}
           >
             <div className="text-xl mb-1 relative">
-              {item.id === 'cart' && cartItems.length > 0 && (
-                <sup className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-ping-slow">
-                  {cartItems.length}
-                </sup>
-              )}
+              {item.id === 'cart' && totalItems > 0 && (
+  <sup className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+    {totalItems}
+  </sup>
+)}
               {item.icon}
             </div>
             <span className="text-sm font-medium">{item.label}</span>

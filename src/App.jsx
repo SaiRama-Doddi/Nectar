@@ -22,6 +22,7 @@ import Header from './Component/Header';
 import AccountDetails from './Account/AccountDetails';
 import OrderPage from './Order/OrderPage';
 import UserDetails from './Account/UserDetails';
+import MobileLoginPage from './Account/MobileLoginPage';
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ function App() {
         <Route path='/account' element={<AccountDetails />} />
         <Route path='/order' element={<OrderPage />} />
         <Route path='/user' element={<UserDetails />} />
+        <Route path='/login' element={<MobileLoginPage />} />
     
       </Routes>
     </Router>

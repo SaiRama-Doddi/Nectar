@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { FaSearch, FaSignInAlt } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [mobileNumber, setMobileNumber] = useState('');
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log('Logging in with mobile number:', mobileNumber);
-    closeModal();
+
+
+   const handleLoginClick = () => {
+    navigate("/login"); // Navigate to mobile login page
   };
 
   return (
@@ -24,7 +23,7 @@ const Header = () => {
         <div className="flex justify-center sm:justify-end w-full sm:w-auto">
           <button
             className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow hover:bg-green-50 transition duration-200 cursor-pointer"
-            onClick={openModal}
+            onClick={handleLoginClick}
           >
             <FaSignInAlt />
             <span>Login</span>
@@ -44,44 +43,7 @@ const Header = () => {
         </div>
       </div>
 \
-   {/* Modal */}
-
-{isModalOpen && (
-  <div
-    className="fixed inset-0 z-20 flex justify-center items-center bg-black/10 backdrop-blur-sm"
-    onClick={closeModal} // allow outside click to close
-  >
-    <div
-      className="bg-white p-6 rounded-t-2xl lg:rounded-lg shadow-md w-full sm:w-full md:w-[80%] lg:w-96 transition-all"
-      onClick={(e) => e.stopPropagation()} // prevent modal close when clicking inside
-    >
-      <h2 className="text-lg font-semibold text-center mb-4">
-        Login with Mobile Number
-      </h2>
-      <input
-        type="text"
-        placeholder="Enter Mobile Number"
-        value={mobileNumber}
-        onChange={(e) => setMobileNumber(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded-md mb-4"
-      />
-      <button
-        className="w-full bg-[#53B175] text-white py-2 rounded-md hover:bg-green-600 transition duration-200 cursor-pointer"
-        onClick={handleLogin}
-      >
-        Log In
-      </button>
-      <button
-        className="mt-4 text-[#53B175] font-medium w-full cursor-pointer"
-        onClick={closeModal}
-      >
-        Close
-      </button>
-    </div>
-  </div>
-)}
-
-
+  
     </header>
   );
 };
