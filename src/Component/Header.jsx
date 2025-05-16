@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaSearch, FaSignInAlt } from 'react-icons/fa';
+import { FaSearch, FaSignInAlt ,FaUser} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
@@ -9,6 +9,9 @@ const Header = () => {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const navigate = useNavigate();
+const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [userName, setUserName] = useState('');
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -58,11 +61,15 @@ const Header = () => {
       body: JSON.stringify({ email: userEmail,code: otp }),
     });
 
-    if (res.ok) {
-      alert('Login successful!');
-      closeModal();
-      // You can store auth token / user info here if needed
-    } else {
+if (res.ok) {
+  alert('Login successful!');
+  setIsLoggedIn(true);
+  const fallbackName = userEmail.split('@')[0].replace(/[0-9]/g, '');
+
+  setUserName(fallbackName);
+  closeModal();
+}
+ else {
       alert('Invalid OTP');
     }
   };
@@ -74,13 +81,20 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-white font-Poppins">Nectar</h1>
         </div>
         <div className="flex justify-center sm:justify-end w-full sm:w-auto">
-          <button
-            className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow hover:bg-green-50 transition duration-200"
-            onClick={openModal}
-          >
-            <FaSignInAlt />
-            <span>Login</span>
-          </button>
+            {isLoggedIn ? (
+    <div className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow">
+      <FaUser />
+      <span>{userName}</span>
+    </div>
+  ) : (
+    <button
+      className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow hover:bg-green-50 transition duration-200"
+      onClick={openModal}
+    >
+      <FaSignInAlt />
+      <span>Login</span>
+    </button>
+  )}
         </div>
       </div>
 
