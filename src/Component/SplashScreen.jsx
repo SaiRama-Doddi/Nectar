@@ -32,7 +32,7 @@ const SplashScreen = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#53B175] sm:bg-green-200 flex items-center justify-center">
+    <div className="min-h-screen bg-[#53B175] sm: flex items-center justify-center">
       <img src={image} alt="logo" style={imgStyle} />
       <div className="pl-4" style={textStyle}>
         <p className="text-5xl font-medium text-white">nectar</p>
