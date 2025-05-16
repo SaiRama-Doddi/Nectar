@@ -68,6 +68,7 @@ if (res.ok) {
 
   setUserName(fallbackName);
   closeModal();
+   navigate('/dashboard');
 }
  else {
       alert('Invalid OTP');
