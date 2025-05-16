@@ -3,9 +3,9 @@ import { FaTrash } from "react-icons/fa";
 import Navbar from "../Component/Navbar";
 import { useCart } from '../Context/CartContext';
 import Header from "../Component/Header";
-
+import { FaPlus,FaMinus } from 'react-icons/fa';
 const CartPage = () => {
-  const { cartItems, removeFromCart, clearCart } = useCart();
+  const { cartItems, removeFromCart, clearCart ,increaseQuantity, decreaseQuantity, getQuantity} = useCart();
 
   return (
         <div className="h-screen flex flex-col relative bg-gray-100">
@@ -17,30 +17,54 @@ const CartPage = () => {
       {cartItems.length > 0 ? (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {cartItems.map((item) => (
-              <div key={item.id} className=" flex flex-row bg-white p-3 rounded-lg shadow">
-                <img
-                  src={item.thumbnail}
-                  alt={item.title}
-                  className="w-1/2 h-32 object-cover rounded mb-2"
-                />
-                <div className="flex flex-col justify-between ml-2">
-               <h3 className="text-sm font-semibold truncate">{item.title}</h3>
-                <p className="text-xs text-green-700 font-bold">${item.price}</p>
-              <button
-  onClick={() => removeFromCart(item.id)}
-  className="flex items-center bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-[10px] mt-1 transition-all duration-150"
->
-  <FaTrash className="text-xs mr-1" />
-  Remove
-</button>
+       {cartItems.map((item) => (
+  <div key={item.id} className="flex flex-row bg-white p-3 rounded-lg shadow">
+    <img
+      src={item.thumbnail}
+      alt={item.title}
+      className="w-1/2 h-32 object-cover rounded mb-2"
+    />
+    <div className="flex flex-col justify-between ml-2 w-full">
+      <div>
+        <h3 className="text-sm font-semibold truncate">{item.title}</h3>
+        <p className="text-xs text-green-700 font-bold">${item.price}</p>
+      </div>
 
+      <div className="flex items-center space-x-1 mt-2">
+        <button
+            className="bg-red-500  text-white p-2 rounded-lg text-[10px] cursor-pointer"
+          onClick={() => decreaseQuantity(item.id)}
+          disabled={item.quantity <= 1}
+        >
+                   <FaMinus className="text-[10px]" />
+        </button>
 
+        <span className="text-sm font-bold w-6 text-center">
+          {item.quantity}
+        </span>
 
-                </div>
-               
-              </div>
-            ))}
+        <button
+      
+         className="bg-green-600 text-white p-2 rounded-lg text-[10px] cursor-pointer"
+                                        
+          onClick={() => increaseQuantity(item.id)}
+          disabled={item.quantity >= 8}
+        >
+             <FaPlus className="text-[10px]" />
+        </button>
+      </div>
+
+      <button
+        onClick={() => removeFromCart(item.id)}
+        className="flex items-center text-white px-2 py-1 rounded text-[10px] mt-2 transition-all duration-150 w-fit"
+      >
+        <FaTrash className="text-xs mr-1 h-4 w-4 text-red-600" />
+  
+      </button>
+    </div>
+  </div>
+))}
+
           </div>
 
           <div className="text-right mt-6">

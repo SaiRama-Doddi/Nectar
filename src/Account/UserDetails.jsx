@@ -3,7 +3,10 @@ import axios from "axios";
 import Header from "../Component/Header";
 import Navbar from "../Component/Navbar";
 
+
 const UserForm = () => {
+
+   
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -35,6 +38,7 @@ const UserForm = () => {
       console.error("Submission error:", error);
     }
   };
+
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
