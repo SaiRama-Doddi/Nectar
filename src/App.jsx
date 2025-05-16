@@ -5,7 +5,7 @@ import './App.css';
 import SplashScreen from './Component/SplashScreen';
 import HomePage from './Component/HomePage';
 import NumberPage from './Component/NumberPage';
-import OtpPage from './Component/OtpPage';
+
 import DashboardPage from './Component/DashboardPage';
 import Slider from './Component/Slider';
 import GroceryProducts from './Products/GroceryProducts';
