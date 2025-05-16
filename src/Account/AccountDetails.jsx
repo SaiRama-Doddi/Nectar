@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../Component/Header";
 import Navbar from "../Component/Navbar";
+import { useAuth } from "../Context/CartContext" // Adjust path if needed
 
 export default function AccountPage() {
   const [selectedSection, setSelectedSection] = useState("details");
+  const navigate = useNavigate();
+  const { logout } = useAuth(); // Destructure logout from your AuthContext
 
   const menuItems = [
     { key: "details", label: "Account Details" },
     { key: "address", label: "Manage Address" },
     { key: "logout", label: "Logout" },
   ];
+
+  useEffect(() => {
+    if (selectedSection === "logout") {
+      logout(); // Call logout logic from context (clears token/session etc.)
+      navigate("/home"); // Redirect to login or homepage
+    }
+  }, [selectedSection, logout, navigate]);
 
   const renderContent = () => {
     switch (selectedSection) {
@@ -18,7 +29,7 @@ export default function AccountPage() {
       case "address":
         return <div className="text-gray-700">Manage your saved addresses here.</div>;
       case "logout":
-        return <div className="text-red-600 font-medium">You have been logged out.</div>;
+        return <div className="text-red-600 font-medium">Logging out...</div>;
       default:
         return <div>Select a section.</div>;
     }

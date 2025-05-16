@@ -75,3 +75,30 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+// AuthContext (inside CartContext.js)
+const AuthContext = createContext();
+
+export const useAuth = () => useContext(AuthContext);
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
+  const login = (userData) => setUser(userData);
+  const logout = () => setUser(null);
+  const isLoggedIn = !!user;
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, isLoggedIn }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+

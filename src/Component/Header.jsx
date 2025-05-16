@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaSearch, FaSignInAlt ,FaUser} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/CartContext';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,9 +10,7 @@ const Header = () => {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const navigate = useNavigate();
-const [isLoggedIn, setIsLoggedIn] = useState(false);
-const [userName, setUserName] = useState('');
-
+ const { user, login, isLoggedIn } = useAuth();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -54,26 +53,24 @@ const [userName, setUserName] = useState('');
     }
   };
 
-  const handleOtpSubmit = async () => {
-    const res = await fetch('http://localhost:5000/api/verify-otp', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: userEmail,code: otp }),
-    });
+const handleOtpSubmit = async () => {
+  const res = await fetch('http://localhost:5000/api/verify-otp', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: userEmail, code: otp }),
+  });
 
-if (res.ok) {
-  alert('Login successful!');
-  setIsLoggedIn(true);
-  const fallbackName = userEmail.split('@')[0].replace(/[0-9]/g, '');
+  if (res.ok) {
+    alert('Login successful!');
+    const fallbackName = userEmail.split('@')[0].replace(/[0-9]/g, '');
+    login({ email: userEmail, name: fallbackName }); // ✅ Store in AuthContext
+    closeModal();
+    navigate('/dashboard');
+  } else {
+    alert('Invalid OTP');
+  }
+};
 
-  setUserName(fallbackName);
-  closeModal();
-   navigate('/dashboard');
-}
- else {
-      alert('Invalid OTP');
-    }
-  };
 
   return (
     <header className="bg-[#53B175] text-green-900 py-4 shadow-md">
@@ -85,7 +82,8 @@ if (res.ok) {
             {isLoggedIn ? (
     <div className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow">
       <FaUser />
-      <span>{userName}</span>
+   <span>{user?.name}</span>
+
     </div>
   ) : (
     <button
