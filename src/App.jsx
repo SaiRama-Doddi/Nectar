@@ -23,7 +23,7 @@ import AccountDetails from './Account/AccountDetails';
 import OrderPage from './Order/OrderPage';
 import UserDetails from './Account/UserDetails';
 import MobileLoginPage from './Account/MobileLoginPage';
-import OtpModal from './Account/OtpModal';
+
 
 function SplashWrapper() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function App() {
         <Route path="/" element={<SplashWrapper />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/number" element={<NumberPage />} />
-        <Route path="/otp" element={<OtpModal />} />
+
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path='/slider' element={<Slider />} />
         <Route path='/grocery' element={<GroceryProducts />}  />
