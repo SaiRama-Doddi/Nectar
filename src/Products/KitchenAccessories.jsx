@@ -9,7 +9,7 @@ const KitchenAccessories = () => {
  const { addToCart, increaseQuantity, decreaseQuantity, getQuantity } = useCart();
  
    useEffect(() => {
-     fetch("http://localhost:5000/api/kitchenary?limit=10")
+     fetch("http://localhost:5000/api/kitchen")
        .then((res) => res.json())
        .then((data) => {
          setProducts(data);

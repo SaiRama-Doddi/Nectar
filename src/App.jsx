@@ -23,6 +23,7 @@ import AccountDetails from './Account/AccountDetails';
 import OrderPage from './Order/OrderPage';
 import UserDetails from './Account/UserDetails';
 import MobileLoginPage from './Account/MobileLoginPage';
+import SearchResults from './Component/SearchResult.jsx';
 
 
 function SplashWrapper() {
@@ -64,6 +65,7 @@ function App() {
         <Route path='/order' element={<OrderPage />} />
         <Route path='/user' element={<UserDetails />} />
         <Route path='/login' element={<MobileLoginPage />} />
+        <Route path='/search-results' element={<SearchResults />} />
     
       </Routes>
     </Router>

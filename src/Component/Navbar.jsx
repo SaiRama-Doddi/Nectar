@@ -9,7 +9,7 @@ const navItems = [
     id: 'shop',
     label: 'Shop',
     icon: <FaShoppingBag />,
-    paths: ['/dashboard', '/dashboard/groceries', '/dashboard/kitchenary', '/dashboard/mobiles','/category/beauty','/category/fragrances','/category/furniture','/category/groceries','/category/home-decoration','/category/kitchen-accessories','/category/laptops','/category/mens-shirts','/category/mens-shoes','/category/mens-watches','/category/mobile-accessories','/user'],
+    paths: ['/dashboard', '/dashboard/groceries', '/dashboard/kitchenary', '/dashboard/mobiles','/category/beauty','/category/fragrances','/category/furniture','/category/groceries','/category/home-decoration','/category/kitchen-accessories','/category/laptops','/category/mens-shirts','/category/mens-shoes','/category/mens-watches','/category/mobile-accessories','/user','/search-results'],
   },
   { id: 'cart', label: 'Cart', icon: <FaShoppingCart />, path: '/cart' },
   { id: 'order', label: 'Orders', icon: <FaClipboardList />, path: '/order' },

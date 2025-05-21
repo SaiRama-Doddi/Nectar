@@ -12,6 +12,17 @@ const Header = () => {
   const navigate = useNavigate();
  const { user, login, isLoggedIn } = useAuth();
 
+
+
+  const [query, setQuery] = useState('');
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    navigate(`/search-results?title=${encodeURIComponent(query.trim())}`);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
     setShowOtpModal(false);
@@ -99,14 +110,18 @@ const handleOtpSubmit = async () => {
 
       {/* Search Bar */}
       <div className="flex justify-center items-center px-4 mt-4">
-        <div className="flex items-center bg-white rounded-full px-4 py-2 w-full max-w-xl shadow">
-          <FaSearch className="text-gray-400 mr-2" />
-          <input
-            type="text"
-            placeholder="Search Store"
-            className="bg-transparent outline-none w-full text-gray-800 placeholder-gray-400"
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="flex justify-center items-center px-4 mt-4">
+      <div className="flex items-center bg-white rounded-full px-4 py-2 w-full max-w-xl shadow">
+        <FaSearch className="text-gray-400 mr-2" />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search Store"
+          className="bg-transparent outline-none w-full text-gray-800 placeholder-gray-400"
+        />
+      </div>
+    </form>
       </div>
 
       {/* Modal */}

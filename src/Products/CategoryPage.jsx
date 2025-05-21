@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const bgColors = [
   'bg-red-100',
@@ -13,26 +13,16 @@ const bgColors = [
 ];
 
 const CategoryPage = () => {
-  const [uniqueCategories, setUniqueCategories] = useState([]);
-  const navigate = useNavigate(); // ✅ Init navigate
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products?limit=100")
+    fetch("http://localhost:5000/api/categories") // your backend URL here
       .then((res) => res.json())
       .then((data) => {
-        const seen = new Set();
-        const unique = [];
-
-        data.products.forEach((product) => {
-          if (!seen.has(product.category)) {
-            seen.add(product.category);
-            unique.push(product);
-          }
-        });
-
-        setUniqueCategories(unique);
+        setCategories(data); // data is [{ category, thumbnail }, ...]
       })
-      .catch((err) => console.error("Error fetching categories", err));
+      .catch((err) => console.error("Error fetching categories:", err));
   }, []);
 
   return (
@@ -40,15 +30,15 @@ const CategoryPage = () => {
       <h2 className="text-xl font-bold mb-4 font-Poppins">Categories</h2>
 
       <div className="flex overflow-x-auto space-x-4 scrollbar-hide pb-2">
-        {uniqueCategories.map((item, index) => (
+        {categories.map((item, index) => (
           <div
             key={item.category}
-            onClick={() => navigate(`/category/${item.category}`)} // ✅ Navigate on click
+            onClick={() => navigate(`/category/${item.category}`)}
             className={`min-w-[30%] sm:min-w-[45%] md:min-w-[200px] cursor-pointer flex rounded-lg shadow p-3 items-center transition hover:scale-105 ${bgColors[index % bgColors.length]}`}
           >
             <img
               src={item.thumbnail}
-              alt={item.title}
+              alt={item.category}
               className="w-16 h-16 object-cover rounded mr-4"
             />
             <div>
