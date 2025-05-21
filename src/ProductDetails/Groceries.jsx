@@ -23,11 +23,11 @@ const Groceries = () => {
   const { addToCart, increaseQuantity, decreaseQuantity, getQuantity } = useCart();
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/category/groceries")
+    fetch("http://localhost:5000/api/groceries")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.products);
-        setFiltered(data.products);
+        setProducts(data);
+        setFiltered(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);

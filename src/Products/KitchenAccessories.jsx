@@ -9,10 +9,10 @@ const KitchenAccessories = () => {
  const { addToCart, increaseQuantity, decreaseQuantity, getQuantity } = useCart();
  
    useEffect(() => {
-     fetch("https://dummyjson.com/products/category/kitchen-accessories?limit=10")
+     fetch("http://localhost:5000/api/kitchenary?limit=10")
        .then((res) => res.json())
        .then((data) => {
-         setProducts(data.products);
+         setProducts(data);
        })
        .catch((error) => console.error("Error fetching data:", error));
    }, []);

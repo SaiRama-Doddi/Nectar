@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './index.css';
 import './App.css';
-import SplashScreen from './Component/SplashScreen';
+import SplashScreen from './Component/SplashScreen.jsx';
 import HomePage from './Component/HomePage';
 import NumberPage from './Component/NumberPage';
-import OtpPage from './Component/OtpPage';
+
 import DashboardPage from './Component/DashboardPage';
 import Slider from './Component/Slider';
 import GroceryProducts from './Products/GroceryProducts';

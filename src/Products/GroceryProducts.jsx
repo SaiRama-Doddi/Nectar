@@ -13,15 +13,18 @@ const GroceryProducts = () => {
    
 
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/products/category/groceries?limit=10")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.products);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
-
+useEffect(() => {
+  fetch("http://localhost:5000/api/groceries?limit=10")
+    .then((res) => res.json())
+    .then((data) => {
+      // ✅ Filter only fruits and vegetables based on `category` field
+      const filtered = data.filter(product =>
+        product.title === "Red Onions" || product.title === "Potatoes" || product.title === "Green Bell Pepper" || product.title === "Eggs" || product.title === "Green Chili Pepper" || product.title === "Cucumber" || product.title === "Apple" || product.title === "Mulberry"  || product.title === "Strawberry" || product.title==="BlueBerry" || product.title==="Lemon"
+      );
+      setProducts(filtered);
+    })
+    .catch((error) => console.error("Error fetching data:", error));
+}, []);
 
 
     // Add product to the cart 

@@ -87,7 +87,7 @@ const handleOtpSubmit = async () => {
     </div>
   ) : (
     <button
-      className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow hover:bg-green-50 transition duration-200"
+      className="flex items-center space-x-2 bg-white text-[#53B175] font-medium px-4 py-2 rounded-full shadow hover:bg-green-50 transition duration-200 cursor-pointer"
       onClick={openModal}
     >
       <FaSignInAlt />
