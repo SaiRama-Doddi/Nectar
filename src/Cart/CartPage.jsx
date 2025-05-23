@@ -5,12 +5,15 @@ import { useCart } from '../Context/CartContext';
 import Header from "../Component/Header";
 import { FaPlus,FaMinus } from 'react-icons/fa';
 import { useAuth } from '../Context/CartContext';
+import { useAddress } from "../Context/AddressContext";
 
 const CartPage = () => {
   const { cartItems, removeFromCart, clearCart ,increaseQuantity, decreaseQuantity, getQuantity} = useCart();
   const { user, isLoggedIn } = useAuth();
+   const { addresses, loading, error } = useAddress();
   
   
+
 
 
   return (
@@ -38,6 +41,21 @@ const CartPage = () => {
       <p> {user.state || 'N/A'}</p>
       <p> {user.pincode || 'N/A'}</p>
     </div>
+{/* secoundary address */}
+{addresses.length > 0 && (
+  <div className="mt-4">
+    <h3 className="text-md font-semibold mb-2 text-gray-700">Secondary Addresses</h3>
+    <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+      {addresses.map((addr) => (
+        <li key={addr.id}>
+          {addr.address}, {addr.landmark}, {addr.state} - {addr.pincode}
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
+
   </div>
 )}
 
