@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Component/Header";
 import Navbar from "../Component/Navbar";
-import { useAuth } from "../Context/CartContext" // Adjust path if needed
+import { useAuth } from "../Context/CartContext"; // Adjust path if needed
 
 export default function AccountPage() {
   const [selectedSection, setSelectedSection] = useState("details");
@@ -15,12 +15,7 @@ export default function AccountPage() {
     { key: "logout", label: "Logout" },
   ];
 
-  useEffect(() => {
-    if (selectedSection === "logout") {
-      logout(); // Call logout logic from context (clears token/session etc.)
-      navigate("/home"); // Redirect to login or homepage
-    }
-  }, [selectedSection, logout, navigate]);
+  // Removed useEffect for logout
 
   const renderContent = () => {
     switch (selectedSection) {
@@ -45,19 +40,37 @@ export default function AccountPage() {
           <aside className="w-full md:w-1/4 border-b md:border-b-0 md:border-r bg-gray-50 p-4">
             <h2 className="text-xl font-bold mb-4">My Account</h2>
             <nav className="space-y-2">
-              {menuItems.map((item) => (
-                <button
-                  key={item.key}
-                  className={`w-full text-left px-4 py-2 rounded-md transition ${
-                    selectedSection === item.key
-                      ? "bg-[#53B175] text-white"
-                      : "bg-white text-gray-700 hover:bg-gray-100"
-                  }`}
-                  onClick={() => setSelectedSection(item.key)}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {menuItems.map((item) => {
+                if (item.key === "logout") {
+                  // Logout button triggers logout and navigation immediately
+                  return (
+                    <button
+                      key={item.key}
+                      className="w-full text-left px-4 py-2 rounded-md bg-white text-gray-700 hover:bg-gray-100"
+                      onClick={() => {
+                        logout();
+                        navigate("/home");
+                      }}
+                    >
+                      {item.label}
+                    </button>
+                  );
+                }
+
+                return (
+                  <button
+                    key={item.key}
+                    className={`w-full text-left px-4 py-2 rounded-md transition ${
+                      selectedSection === item.key
+                        ? "bg-[#53B175] text-white"
+                        : "bg-white text-gray-700 hover:bg-gray-100"
+                    }`}
+                    onClick={() => setSelectedSection(item.key)}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
             </nav>
           </aside>
 

@@ -3,8 +3,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const CartContext = createContext();
 
-
-
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
@@ -81,21 +79,60 @@ export const CartProvider = ({ children }) => {
 // AuthContext (inside CartContext.js)
 const AuthContext = createContext();
 
+// 2. Export the hook to use the context
 export const useAuth = () => useContext(AuthContext);
 
+// 3. Create the AuthProvider
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : null;
+    // Try to get user from localStorage on first load
+    const savedUser = localStorage.getItem("user");
+    return savedUser
+      ? JSON.parse(savedUser)
+      : {
+          name: "",
+          address: "",
+          landmark: "",
+          pincode: "",
+          state:""
+        };
   });
 
+  // 4. Save user data to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  const login = (userData) => setUser(userData);
-  const logout = () => setUser(null);
-  const isLoggedIn = !!user;
+  // 5. Login method — sets user data
+  const login = (userData) => {
+    setUser({
+      id: userData.id || "",
+      email: userData.email || "",
+      mobile: userData.mobile || "",
+      name: userData.name || "",
+      address: userData.address || "",
+      landmark: userData.landmark || "",
+      pincode: userData.pincode || "",
+      state:userData.state || ""
+    });
+  };
+
+  // 6. Logout method — clears user data
+  const logout = () => {
+    setUser({
+
+      name: "",
+      address: "",
+      landmark: "",
+      pincode: "",
+    });
+    localStorage.removeItem("user");
+  };
+
+  // 7. Check if user is logged in (basic check for name or all fields)
+  const isLoggedIn =
+    user &&
+    (user.name || user.address || user.landmark || user.pincode);
 
   return (
     <AuthContext.Provider value={{ user, login, logout, isLoggedIn }}>
@@ -103,4 +140,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-

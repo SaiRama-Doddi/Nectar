@@ -72,9 +72,26 @@ const handleOtpSubmit = async () => {
   });
 
   if (res.ok) {
-    alert('Login successful!');
+    const data = await res.json(); // 👈 Parse JSON response from server
+const userData = data.user;
+    // Optional: fallback name if backend doesn't send it
     const fallbackName = userEmail.split('@')[0].replace(/[0-9]/g, '');
-    login({ email: userEmail, name: fallbackName }); // ✅ Store in AuthContext
+
+    // Store user in AuthContext
+    login({
+      email: userData.email || userEmail,
+  name: userData.name || fallbackName,
+  address: userData.address,
+  landmark: userData.landmark,
+  pincode: userData.pincode,
+  state: userData.state,
+  mobile: userData.mobile,
+    });
+
+    // ✅ Log all user details to console
+    console.log("User logged in:", userData.address, userData.landmark, userData.pincode, userData.state, userData.mobile,userData.email);
+
+    alert('Login successful!');
     closeModal();
     navigate('/dashboard');
   } else {

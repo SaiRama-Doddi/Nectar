@@ -4,14 +4,43 @@ import Navbar from "../Component/Navbar";
 import { useCart } from '../Context/CartContext';
 import Header from "../Component/Header";
 import { FaPlus,FaMinus } from 'react-icons/fa';
+import { useAuth } from '../Context/CartContext';
+
 const CartPage = () => {
   const { cartItems, removeFromCart, clearCart ,increaseQuantity, decreaseQuantity, getQuantity} = useCart();
+  const { user, isLoggedIn } = useAuth();
+  
+  
+
 
   return (
         <div className="h-screen flex flex-col relative bg-gray-100">
           <Header />
     <div className="w-full px-4 py-6 overflow-y-auto h-[calc(100vh-300px)] scrollbar-hide">
-  
+{isLoggedIn && user && (
+  <div className="mb-6 p-4 bg-white rounded-lg shadow-md border text-gray-800">
+    <div className="flex justify-between items-center mb-4">
+    <h3 className="text-lg font-semibold mb-3 text-[#53B175]">Shipping Address</h3>
+    <button
+             
+                className="text-green-600 hover:text-green-800"
+       
+              >
+                <FaPlus />
+              </button> 
+    </div>
+
+    <div className="space-y-1 flex gap-3">
+      
+  {/*     <p>{user.name || 'N/A'}</p> */}
+      <p> {user.address || 'N/A'}</p>
+      <p> {user.landmark || 'N/A'}</p>
+      <p> {user.state || 'N/A'}</p>
+      <p> {user.pincode || 'N/A'}</p>
+    </div>
+  </div>
+)}
+
       <h2 className="text-2xl font-bold mb-4 font-Poppins">Your Cart</h2>
 
       {cartItems.length > 0 ? (
