@@ -79,6 +79,7 @@ const userData = data.user;
 
     // Store user in AuthContext
     login({
+      id: userData.id || '',
       email: userData.email || userEmail,
   name: userData.name || fallbackName,
   address: userData.address,
@@ -89,7 +90,7 @@ const userData = data.user;
     });
 
     // ✅ Log all user details to console
-    console.log("User logged in:", userData.address, userData.landmark, userData.pincode, userData.state, userData.mobile,userData.email);
+    console.log("User logged in:", userData.address, userData.landmark, userData.pincode, userData.state, userData.mobile,userData.email, userData.id);
 
     alert('Login successful!');
     closeModal();

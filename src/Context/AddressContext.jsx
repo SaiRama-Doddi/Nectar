@@ -1,51 +1,48 @@
-// src/Context/AddressContext.js
+import React, { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "./CartContext"; // or wherever your AuthContext lives
 
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { useAuth } from './CartContext'; // adjust the path if needed
-
-// 1. Create the context
 const AddressContext = createContext();
 
-// 2. Export a hook for using the context
 export const useAddress = () => useContext(AddressContext);
 
-// 3. Provider component
 export const AddressProvider = ({ children }) => {
-  const { user } = useAuth(); // Get user from AuthContext
-  const userId = user?.id; // Make sure `id` exists in your user object
-
+  const { user } = useAuth();
   const [addresses, setAddresses] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 4. Function to fetch addresses
-  const fetchAddresses = async () => {
-    if (!userId) return;
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch(`/api/addresses/${userId}`);
-      if (!response.ok) throw new Error('Failed to fetch addresses');
-
-      const data = await response.json();
-      setAddresses(data); // assuming API returns array directly
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 5. Fetch addresses on mount or when userId changes
   useEffect(() => {
-    fetchAddresses();
-  }, [userId]);
+    const fetchAddresses = async () => {
+      if (!user || !user.id) {
+        console.log("No user or user.id yet");
+        setAddresses([]);
+        setLoading(false);
+        return;
+      }
 
-  // 6. Provide the values
+      setLoading(true);
+      setError(null);
+
+      try {
+        const res = await axios.get(`http://localhost:5000/address/${user.id}`);
+        console.log("Fetched addresses:", res.data);
+        setAddresses(res.data.addresses || []); // Adjust based on API response
+      } catch (err) {
+        console.error("Error fetching addresses:", err);
+        setError("Failed to fetch addresses");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAddresses();
+  }, [user]);
+
   return (
-    <AddressContext.Provider value={{ addresses, loading, error, fetchAddresses }}>
+    <AddressContext.Provider
+      value={{ addresses, loading, error }}
+    >
       {children}
     </AddressContext.Provider>
   );

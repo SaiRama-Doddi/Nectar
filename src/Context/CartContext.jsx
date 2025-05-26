@@ -90,6 +90,8 @@ export const AuthProvider = ({ children }) => {
     return savedUser
       ? JSON.parse(savedUser)
       : {
+        id:"",
+          email: "",
           name: "",
           address: "",
           landmark: "",
