@@ -29,7 +29,7 @@ const isActive = (item) => {
 
 
   return (
-    <nav className="w-full px-4 py-2">
+    <nav className="w-full px-4 py-2 bg-gray-100 shadow-md fixed bottom-0 left-0 z-50">
       <div className="flex flex-row sm:justify-between md:justify-center md:space-x-10 items-center">
         {navItems.map((item) => (
           <div

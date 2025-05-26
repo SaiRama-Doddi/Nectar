@@ -1,52 +1,101 @@
-// src/components/UserPage.js
-import React from 'react';
-import { useAuth } from '../Context/CartContext';
-import { useAddress } from '../Context/AddressContext';
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
+import { useCart } from "../Context/CartContext";
 
-const UserPage = () => {
-  const { user, logout, isLoggedIn } = useAuth();
-  const { addresses, loading, error } = useAddress();
+export default function CartPage() {
+  const {
+    cartItems,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCart();
 
-  if (!isLoggedIn) {
-    return <p>Please log in to see your user details.</p>;
-  }
+  const totalDistinctItems = cartItems.length;
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
-    <div style={{ maxWidth: 600, margin: '2rem auto', padding: '1rem', border: '1px solid #ccc', borderRadius: 8 }}>
-      <h2>User Details</h2>
-      <p><strong>Name:</strong> {user.name || '-'}</p>
-      <p><strong>Email:</strong> {user.email || '-'}</p>
-      <p><strong>Mobile:</strong> {user.mobile || '-'}</p>
-      <p><strong>Address:</strong> {user.address || '-'}</p>
-      <p><strong>Landmark:</strong> {user.landmark || '-'}</p>
-      <p><strong>Pincode:</strong> {user.pincode || '-'}</p>
-      <p><strong>State:</strong> {user.state || '-'}</p>
-      <p><strong>userid</strong>{user.id}</p>
+ <div className="max-w-md sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto p-6 bg-white rounded-lg ">
 
-      <hr />
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800 border-b pb-2">
+        Cart Summary
+      </h2>
 
-      <h3>User Addresses</h3>
-      {loading && <p>Loading addresses...</p>}
-      {error && <p style={{ color: 'red' }}>Error loading addresses.</p>}
-      {!loading && addresses.length === 0 && <p>No saved addresses found.</p>}
+      <div className="mb-6 space-y-2">
+        <p className="text-gray-700 font-medium">
+          Total distinct items:{" "}
+          <span className="font-bold text-indigo-600">{totalDistinctItems}</span>
+        </p>
+        <p className="text-gray-700 font-medium">
+          Total quantity:{" "}
+          <span className="font-bold text-indigo-600">{totalItems}</span>
+        </p>
+        <p className="text-gray-700 font-medium">
+          Total price:{" "}
+          <span className="font-bold text-indigo-600">${totalPrice.toFixed(2)}</span>
+        </p>
+      </div>
 
-      <ul>
-        {addresses.map((addr) => (
-          <li key={addr.id} style={{ marginBottom: '1rem' }}>
-            <p><strong>Address:</strong> {addr.address}</p>
-            <p><strong>Landmark:</strong> {addr.landmark || '-'}</p>
-            <p><strong>State:</strong> {addr.state || '-'}</p>
-            <p><strong>Pincode:</strong> {addr.pincode || '-'}</p>
-            <p><small>Added on: {new Date(addr.created_at).toLocaleDateString()}</small></p>
-          </li>
+      <div className="divide-y divide-gray-200">
+        {cartItems.map((item) => (
+          <div
+            key={item.id}
+            className="flex flex-col sm:flex-row sm:items-center py-3 space-y-3 sm:space-y-0"
+          >
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              className="w-16 h-16 object-cover rounded mr-0 sm:mr-4"
+            />
+
+            <div className="flex-grow">
+              <p className="text-gray-900 font-semibold truncate">{item.title}</p>
+              <p className="text-sm text-gray-600">
+                Quantity: <span className="font-bold">{item.quantity}</span> &nbsp;|&nbsp; Price:{" "}
+                <span className="font-bold">${item.price}</span>
+              </p>
+            </div>
+
+            {/* Quantity Controls & Remove Button */}
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => decreaseQuantity(item.id)}
+                disabled={item.quantity <= 1}
+                className="p-1 bg-red-400 hover:bg-red-500 text-white rounded disabled:opacity-50"
+                aria-label="Decrease quantity"
+              >
+                <FaMinus size={12} />
+              </button>
+
+              <span className="w-6 text-center font-semibold">{item.quantity}</span>
+
+              <button
+                onClick={() => increaseQuantity(item.id)}
+                disabled={item.quantity >= 8}
+                className="p-1 bg-green-600 hover:bg-green-700 text-white rounded disabled:opacity-50"
+                aria-label="Increase quantity"
+              >
+                <FaPlus size={12} />
+              </button>
+
+              <button
+                onClick={() => removeFromCart(item.id)}
+                className="p-1 text-red-600 hover:text-red-700"
+                aria-label="Remove item"
+              >
+                <FaTrash size={14} />
+              </button>
+            </div>
+
+            {/* Total price per item */}
+            <p className="sm:ml-4 text-gray-900 font-semibold">
+              ${(item.price * item.quantity).toFixed(2)}
+            </p>
+          </div>
         ))}
-      </ul>
-
-      <button onClick={logout} style={{ marginTop: '1rem', padding: '0.5rem 1rem' }}>
-        Logout
-      </button>
+      </div>
     </div>
   );
-};
-
-export default UserPage;
+}
