@@ -26,7 +26,7 @@ export default function OrdersPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
       <div className="flex-1 px-4 py-2 overflow-hidden">
