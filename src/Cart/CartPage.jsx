@@ -191,7 +191,9 @@ const CartPage = () => {
                     value="home"
                     checked={selectedAddressType === "home"}
                     onChange={(e) => setSelectedAddressType(e.target.value)}
+                      className="accent-green-600"
                   />
+                  
                   <span>
                     Home: {user.address}, {user.landmark}, {user.state} - {user.pincode}
                   </span>
@@ -206,7 +208,8 @@ const CartPage = () => {
                     name="addressType"
                     value={`work-${addr.id}`}
                     checked={selectedAddressType === `work-${addr.id}`}
-                    onChange={(e) => setSelectedAddressType(e.target.value)}
+                    onChange={(e) => setSelectedAddressType(e.target.value)} 
+                      className="accent-green-600"
                   />
                   <span>
                     Work: {addr.address}, {addr.landmark}, {addr.state} - {addr.pincode}
@@ -228,6 +231,7 @@ const CartPage = () => {
                   value={form.address}
                   onChange={handleInputChange}
                   className="w-1/2 p-2 border rounded"
+                
                 />
                 <input
                   type="text"
@@ -261,7 +265,7 @@ const CartPage = () => {
 
               <button
                 onClick={handleAddressSubmit}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+                className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition"
               >
                 Save Work Address
               </button>
