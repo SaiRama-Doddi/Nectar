@@ -166,7 +166,7 @@ const ProductList = () => {
   <button
     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
     disabled={currentPage === 1}
-    className="flex items-center px-2 py-2 bg-blue-600 text-white rounded disabled:bg-gray-400 cursor-pointer"
+    className="flex items-center px-2 py-2 bg-green-300 text-white rounded disabled:bg-gray-400 cursor-pointer"
   >
     <ChevronLeftIcon className="h-5 w-5 mr-1" />
 
