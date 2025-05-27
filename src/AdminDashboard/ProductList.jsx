@@ -3,10 +3,17 @@ import Header from '../Component/Header';
 import Navbar from '../Component/Navbar';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 
 
+const handleDelete = (id) => {
+  if (window.confirm('Are you sure you want to delete this product?')) {
+    console.log('Deleting product with ID:', id);
+    // TODO: Call delete API and update state
+  }
+};
 
-const ProductCard = ({ product }) => (
+const ProductCard = ({ product, handleEdit }) => (
     <div className="bg-white rounded-lg shadow-md p-4 mb-4 flex space-x-4 items-center">
         <img
             src={product.thumbnail}
@@ -40,7 +47,9 @@ const ProductCard = ({ product }) => (
     </div>
 );
 
-const ProductTable = ({ products }) => (
+const ProductTable = ({ products,handleEdit }) => (
+
+    
     <div className="overflow-x-auto">
         <div className="h-[550px] overflow-y-auto rounded-lg border border-gray-300 shadow-md bg-white">
             <table className="min-w-full text-sm text-left hidden md:table">
@@ -94,7 +103,8 @@ const ProductTable = ({ products }) => (
             {/* Cards for mobile */}
             <div className="md:hidden p-2 overflow-y-auto h-[550px]">
                 {products.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product.id} product={product} handleEdit={handleEdit} />
+
                 ))}
             </div>
         </div>
@@ -105,13 +115,16 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
-
+    const navigate = useNavigate();
     const productsPerPage = 20;
     const totalPages = Math.ceil(products.length / productsPerPage);
     const paginatedProducts = products.slice(
         (currentPage - 1) * productsPerPage,
         currentPage * productsPerPage
     );
+  const handleEdit = (product) => {
+    navigate(`/editproduct/${product.id}`);
+  };
 
     useEffect(() => {
         setLoading(true);
@@ -126,17 +139,9 @@ const ProductList = () => {
                 setLoading(false);
             });
     }, []);
-const handleEdit = (product) => {
-  console.log('Edit product:', product);
-  // TODO: Open edit modal or navigate to edit page
-};
+     
 
-const handleDelete = (id) => {
-  if (window.confirm('Are you sure you want to delete this product?')) {
-    console.log('Deleting product with ID:', id);
-    // TODO: Call delete API and update state
-  }
-};
+
 
     return (
         <div className="pt-20 pb-24 min-h-screen bg-white relative">
@@ -152,7 +157,7 @@ const handleDelete = (id) => {
                     {loading ? (
                         <p className="text-center text-gray-600">Loading...</p>
                     ) : (
-                        <ProductTable products={paginatedProducts} />
+                        <ProductTable products={paginatedProducts} handleEdit={handleEdit} />
                     )}
                 </Suspense>
 
