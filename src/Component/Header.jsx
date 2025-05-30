@@ -87,6 +87,7 @@ const userData = data.user;
   pincode: userData.pincode,
   state: userData.state,
   mobile: userData.mobile,
+  user_type: userData.user_type || 'user',
     });
 
     // ✅ Log all user details to console
@@ -94,7 +95,11 @@ const userData = data.user;
 
     alert('Login successful!');
     closeModal();
+    if(userData.user_type === 'admin') {
+      navigate('/viewproducts');
+    } else if(userData.user_type === 'user') {
     navigate('/dashboard');
+    }
   } else {
     alert('Invalid OTP');
   }
